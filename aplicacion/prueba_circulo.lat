@@ -1,0 +1,47 @@
+
+# Mictlán Lab
+# Primer prototipo del laboratorio visual
+
+ui.titulo("Mictlán Lab - Laboratorio visual")
+
+
+# Primera prueba de la API gráfica de Mictlán
+circulo_creado = graficos.circulo(
+    680, 360, 45,
+    230, 110, 60
+)
+
+si (circulo_creado)
+    escribir("Mictlán: círculo registrado correctamente")
+sino
+    escribir("Mictlán: no se pudo crear el círculo")
+fin
+
+
+ui.iniciar_columna(12)
+    ui.etiqueta("Bienvenido al laboratorio")
+
+    ui.etiqueta_id(10, "Estado: listo")
+
+    ui.iniciar_fila(10)
+        ui.boton(1, "Preparar escena")
+        ui.boton(2, "Reiniciar")
+    ui.fin_contenedor()
+
+ui.fin_contenedor()
+
+
+funcion __ui_despachar()
+    identificador = ui_cb.id_actual()
+
+    si (identificador == 1)
+        resultado = ui.poner_texto(
+            10, "Escena preparada para futuras simulaciones"
+        )
+        escribir("Laboratorio: preparar escena")
+
+    osi (identificador == 2)
+        resultado = ui.poner_texto(10, "Estado: listo")
+        escribir("Laboratorio: reiniciar")
+    fin
+fin
