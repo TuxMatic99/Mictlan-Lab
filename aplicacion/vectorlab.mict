@@ -1,0 +1,27 @@
+
+# Mictlan VectorLab 0.1
+# Primer laboratorio de calculo vectorial.
+
+escribir("=== MICTLAN VECTORLAB ===")
+
+# Primer vector.
+x = 3
+y = 4
+
+longitud = ciencia.longitud2(x, y)
+
+escribir("Vector A: (3, 4)")
+escribir("Longitud:")
+escribir(longitud)
+
+# Segundo vector.
+x = 5
+y = 12
+
+longitud = ciencia.longitud2(x, y)
+
+escribir("Vector B: (5, 12)")
+escribir("Longitud:")
+escribir(longitud)
+
+escribir("=== FIN DEL EXPERIMENTO ===")
