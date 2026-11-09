@@ -1,0 +1,16 @@
+
+# Mictlan Ciencia
+# Primera prueba de suma vectorial con FFI.
+
+escribir("=== SUMA VECTORIAL ===")
+
+resultado = ciencia.sumar2(3, 4, 5, 12)
+
+escribir("Componente X:")
+escribir(resultado[0])
+
+escribir("Componente Y:")
+escribir(resultado[1])
+
+escribir("=== FIN ===")
+

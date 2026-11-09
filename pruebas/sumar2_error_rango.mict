@@ -1,0 +1,10 @@
+
+# VectorLab 0.3
+# Prueba de desbordamiento en suma vectorial.
+
+escribir("=== PRUEBA DE DESBORDAMIENTO ===")
+
+resultado = ciencia.sumar2(1e308, 0, 1e308, 0)
+
+# No deberia llegarse a esta instruccion.
+escribir("ERROR: se acepto un resultado fuera de rango")

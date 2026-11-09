@@ -1,0 +1,11 @@
+
+# Mictlan Ciencia
+# Prueba de rechazo de argumentos incorrectos.
+
+escribir("=== PRUEBA DE ERROR DE TIPO ===")
+
+# El primer argumento es texto en lugar de numero.
+resultado = ciencia.sumar2("texto", 4, 5, 12)
+
+# Esta instruccion NO deberia ejecutarse.
+escribir("ERROR: se acepto un argumento incorrecto")

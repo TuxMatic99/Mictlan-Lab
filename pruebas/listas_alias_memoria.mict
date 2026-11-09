@@ -1,0 +1,19 @@
+
+# Investigar referencias compartidas entre listas.
+
+escribir("=== PRUEBA DE ALIAS ===")
+
+original = [8, 16]
+
+copia = original
+
+# Modificar la lista mediante la segunda variable.
+copia[0] = 99
+
+escribir("Valor desde original:")
+escribir(original[0])
+
+escribir("Valor desde copia:")
+escribir(copia[0])
+
+escribir("=== FIN ===")

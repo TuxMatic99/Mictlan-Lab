@@ -1,0 +1,37 @@
+
+# Mictlan VectorLab 0.3
+# Experimento preliminar de operaciones vectoriales.
+
+escribir("=== VECTORLAB 0.3 ===")
+
+# Componentes del primer vector.
+ax = 3
+ay = 4
+
+# Componentes del segundo vector.
+bx = 5
+by = 12
+
+# Suma de vectores.
+suma_x = ax + bx
+suma_y = ay + by
+
+escribir("SUMA VECTORIAL")
+escribir("Componente X:")
+escribir(suma_x)
+escribir("Componente Y:")
+escribir(suma_y)
+
+# Multiplicacion de un vector por un numero.
+factor = 2
+
+escalar_x = ax * factor
+escalar_y = ay * factor
+
+escribir("MULTIPLICACION ESCALAR")
+escribir("Componente X:")
+escribir(escalar_x)
+escribir("Componente Y:")
+escribir(escalar_y)
+
+escribir("=== EXPERIMENTO TERMINADO ===")

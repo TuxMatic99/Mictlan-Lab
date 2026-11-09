@@ -1,0 +1,11 @@
+
+# Prueba de memoria de una lista nativa.
+
+escribir("=== LISTA NATIVA ===")
+
+vector = [8, 16]
+
+escribir(vector[0])
+escribir(vector[1])
+
+escribir("=== FIN ===")
