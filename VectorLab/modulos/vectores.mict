@@ -1,0 +1,30 @@
+# Matemáticas reutilizables. Los componentes de entrada son textos de un formulario.
+global funcion vectorlab_limite()
+    retorno 1e100
+fin
+
+global funcion vectorlab_componentes(texto_ax, texto_ay, texto_bx, texto_by)
+    valor_ax = ciencia.decimal(texto_ax)
+    valor_ay = ciencia.decimal(texto_ay)
+    valor_bx = ciencia.decimal(texto_bx)
+    valor_by = ciencia.decimal(texto_by)
+    si tipo(valor_ax) != "decimal" || tipo(valor_ay) != "decimal" || tipo(valor_bx) != "decimal" || tipo(valor_by) != "decimal"
+        retorno nulo
+    fin
+    limite_vl = vectorlab_limite()
+    si valor_ax < -limite_vl || valor_ax > limite_vl || valor_ay < -limite_vl || valor_ay > limite_vl
+        retorno nulo
+    fin
+    si valor_bx < -limite_vl || valor_bx > limite_vl || valor_by < -limite_vl || valor_by > limite_vl
+        retorno nulo
+    fin
+    retorno [valor_ax, valor_ay, valor_bx, valor_by]
+fin
+
+global funcion vectorlab_operar(ax, ay, bx, by)
+    magnitud_a = ciencia.longitud2(ax, ay)
+    magnitud_b = ciencia.longitud2(bx, by)
+    suma_ab = ciencia.sumar2(ax, ay, bx, by)
+    punto_ab = ciencia.producto_punto2(ax, ay, bx, by)
+    retorno {magnitud_a: magnitud_a, magnitud_b: magnitud_b, suma: suma_ab, resta: [ax - bx, ay - by], punto: punto_ab}
+fin

@@ -1,0 +1,28 @@
+# El plano usa coordenadas normalizadas y una escala idéntica para ambos ejes.
+global funcion vectorlab_flecha(x, y, rojo, verde, azul)
+    operacion_ok = graficos.linea(0, 0, x, y, rojo, verde, azul)
+    largo_flecha = ciencia.longitud2(x, y)
+    si largo_flecha > 1e-12
+        # La punta ocupa el 18 % del vector, con dos segmentos.
+        operacion_ok = graficos.linea(x, y, 0.82 * x - 0.09 * y, 0.82 * y + 0.09 * x, rojo, verde, azul)
+        operacion_ok = graficos.linea(x, y, 0.82 * x + 0.09 * y, 0.82 * y - 0.09 * x, rojo, verde, azul)
+    fin
+fin
+
+global funcion vectorlab_plano(ax, ay, bx, by, mag_a, mag_b)
+    escala_vl = mag_a
+    si mag_b > escala_vl escala_vl = mag_b fin
+    si escala_vl == 0 escala_vl = 1 fin
+    escala_vl = escala_vl / 0.8
+    operacion_ok = graficos.limpiar()
+    operacion_ok = graficos.linea(-1, 0, 1, 0, 99, 115, 133)
+    operacion_ok = graficos.linea(0, -1, 0, 1, 99, 115, 133)
+    para paso_vl en rango(-4, 5)
+        marca_vl = paso_vl / 5
+        operacion_ok = graficos.linea(marca_vl, -0.016, marca_vl, 0.016, 99, 115, 133)
+        operacion_ok = graficos.linea(-0.016, marca_vl, 0.016, marca_vl, 99, 115, 133)
+    fin
+    vectorlab_flecha(ax / escala_vl, ay / escala_vl, 15, 90, 164)
+    vectorlab_flecha(bx / escala_vl, by / escala_vl, 176, 64, 22)
+    retorno escala_vl
+fin

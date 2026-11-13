@@ -1,0 +1,31 @@
+incluir("../modulos/vectores.mict")
+
+funcion vectorlab_exigir(estado, mensaje)
+    si !estado error(mensaje) fin
+fin
+
+c = vectorlab_componentes("  +3 ", "4.0", ".5e1", "12")
+vectorlab_exigir(tipo(c) == "lista", "Se esperaban cuatro componentes")
+r = vectorlab_operar(c[0], c[1], c[2], c[3])
+vectorlab_exigir(r.magnitud_a == 5 && r.magnitud_b == 13, "Magnitudes 5 y 13")
+vectorlab_exigir(r.suma[0] == 8 && r.suma[1] == 16, "Suma (8, 16)")
+vectorlab_exigir(r.resta[0] == -2 && r.resta[1] == -8, "Resta (-2, -8)")
+vectorlab_exigir(r.punto == 63, "Producto punto 63")
+
+c = vectorlab_componentes("0", "-0", "1.5", "-2.25")
+vectorlab_exigir(tipo(c) == "lista", "Cero, signo y decimales")
+r = vectorlab_operar(c[0], c[1], c[2], c[3])
+vectorlab_exigir(r.magnitud_a == 0 && r.punto == 0, "Vector nulo")
+vectorlab_exigir(r.resta[0] == -1.5 && r.resta[1] == 2.25, "Resta decimal")
+vectorlab_exigir(r.magnitud_b > 2.704 && r.magnitud_b < 2.705, "Magnitud decimal")
+
+invalidas_vl = ["", " ", "-", "ñ", "12 cm", "2,4", "inf", "NaN", "1e", "1e309", "1e-500", "1e101", "0x1p0"]
+para indice_vl en rango(13)
+    c = vectorlab_componentes(invalidas_vl[indice_vl], "0", "0", "0")
+    vectorlab_exigir(tipo(c) != "lista", "Entrada inválida: " .. invalidas_vl[indice_vl])
+fin
+c = vectorlab_componentes("1e100", "-1e100", "1e100", "1e100")
+vectorlab_exigir(tipo(c) == "lista", "Límite admitido")
+r = vectorlab_operar(c[0], c[1], c[2], c[3])
+vectorlab_exigir(r.magnitud_a > 1e100 && r.punto == 0, "Cálculo de gran magnitud")
+escribir("VectorLab: cálculos y validación correctos")
