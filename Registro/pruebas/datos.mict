@@ -1,0 +1,19 @@
+incluir("../modulos/datos.mict")
+si tipo(registro_leer("registro-prueba.txt")) != "nulo" error("archivo ausente") fin
+si registro_guardar("registro-prueba.txt", "María Ñáñez", "Medición número 5") < 1
+    error("guardar UTF-8")
+fin
+guardado_reg = registro_leer("registro-prueba.txt")
+si tipo(guardado_reg) != "lista" error("formato") fin
+si guardado_reg[1] != "María Ñáñez" || guardado_reg[2] != "Medición número 5"
+    error("recuperar UTF-8")
+fin
+si registro_guardar("registro-prueba.txt", "otro\nnombre", "nota") != -2
+    error("nombre con salto de línea")
+fin
+si registro_guardar("registro-prueba.txt", "Nombre", "") != -2 error("nota vacía") fin
+preservado_reg = registro_leer("registro-prueba.txt")
+si preservado_reg[1] != "María Ñáñez" error("se perdió el registro anterior") fin
+escrito_reg = archivo.escribir_atomico("registro-prueba.txt", "Registro-v1\nOtro\nNota\n\n")
+si escrito_reg < 1 || registro_leer("registro-prueba.txt") != falso error("archivo dañado") fin
+escribir("Registro: persistencia y UTF-8 comprobados")
