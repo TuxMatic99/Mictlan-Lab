@@ -1,0 +1,37 @@
+# Registro-v1 contiene una observación en dos líneas. El marco se valida
+# antes de devolver datos al formulario.
+global funcion registro_texto_valido(texto_reg)
+    si tipo(texto_reg) != "cadena" retorno falso fin
+    si cadena.longitud(texto_reg) < 1 || cadena.longitud(texto_reg) > 255
+        retorno falso
+    fin
+    # Un separador ausente deja intacta la única línea. Comprueba el
+    # contenido además del número de elementos para rechazar LF y CR al borde.
+    partes_reg = cadena.separar(texto_reg, "\n\r")
+    si lista.longitud(partes_reg) != 1 retorno falso fin
+    retorno partes_reg[0] == texto_reg
+fin
+
+global funcion registro_guardar(ruta_reg, nombre_reg, nota_reg)
+    si !registro_texto_valido(nombre_reg) || !registro_texto_valido(nota_reg)
+        retorno -2
+    fin
+    retorno archivo.escribir_atomico(ruta_reg, "Registro-v1\n" .. nombre_reg .. "\n" .. nota_reg .. "\n")
+fin
+
+global funcion registro_leer(ruta_reg)
+    fuente_reg = archivo.leer_texto_seguro(ruta_reg)
+    si tipo(fuente_reg) != "cadena" retorno fuente_reg fin
+    si cadena.longitud(fuente_reg) > 524 retorno falso fin
+    lineas_reg = cadena.separar(fuente_reg, "\n")
+    si lista.longitud(lineas_reg) != 3 retorno falso fin
+    si lineas_reg[0] != "Registro-v1" retorno falso fin
+    canon_reg = "Registro-v1\n" .. lineas_reg[1] .. "\n" .. lineas_reg[2] .. "\n"
+    si fuente_reg != canon_reg
+        retorno falso
+    fin
+    si !registro_texto_valido(lineas_reg[1]) || !registro_texto_valido(lineas_reg[2])
+        retorno falso
+    fin
+    retorno lineas_reg
+fin
