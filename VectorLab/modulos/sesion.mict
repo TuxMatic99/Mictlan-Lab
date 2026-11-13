@@ -1,0 +1,24 @@
+# Sesión de texto de cinco líneas. El guardado se realiza de forma atómica.
+global funcion vectorlab_guardar(ruta_vl, ax_vl, ay_vl, bx_vl, by_vl)
+    validos_vl = vectorlab_componentes(ax_vl, ay_vl, bx_vl, by_vl)
+    si tipo(validos_vl) != "lista"
+        retorno -2
+    fin
+    datos_vl = "VectorLab-v1\n" .. ax_vl .. "\n" .. ay_vl .. "\n" .. bx_vl .. "\n" .. by_vl .. "\n"
+    retorno archivo.escribir_atomico(ruta_vl, datos_vl)
+fin
+
+global funcion vectorlab_leer(ruta_vl)
+    contenido_vl = archivo.leer_texto_seguro(ruta_vl)
+    si tipo(contenido_vl) != "cadena" retorno contenido_vl fin
+    # El límite se valida antes de dividir y se comprueba el formato completo.
+    si cadena.longitud(contenido_vl) > 1035 retorno falso fin
+    lineas_vl = cadena.separar(contenido_vl, "\n")
+    si lista.longitud(lineas_vl) != 5 retorno falso fin
+    si lineas_vl[0] != "VectorLab-v1" retorno falso fin
+    canon_vl = "VectorLab-v1\n" .. lineas_vl[1] .. "\n" .. lineas_vl[2] .. "\n" .. lineas_vl[3] .. "\n" .. lineas_vl[4] .. "\n"
+    si contenido_vl != canon_vl retorno falso fin
+    validos_vl = vectorlab_componentes(lineas_vl[1], lineas_vl[2], lineas_vl[3], lineas_vl[4])
+    si tipo(validos_vl) != "lista" retorno falso fin
+    retorno lineas_vl
+fin
